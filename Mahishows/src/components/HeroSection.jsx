@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 const HeroSection = () => {
     const navigate = useNavigate();
     return (
-        <div  className={`flex flex-col items-start justify-center gap-8 px-10 md:px-14 lg:px-23 bg-[url('/backgroundImage.jpg')] bg-cover bg-center h-screen max-md:overflow-hidden max-md:bg-[url("/mobileback.jpg")] max-md:bg-center max-md:bg-cover`}>
+        <div  className={`flex flex-col items-start justify-center gap-8 px-10 md:px-14 lg:px-23 bg-[url('/backgroundImage.png')] bg-cover bg-center h-screen `}>
             <div className="flex flex-col items-start justify-center max-md:text-sm mt-10 min-2xl:text-xl">
                 <img src={assets.marvelLogo} alt="Logo" className='w-60 mx-2 max-md:w-40' />
                 <h1 className='text-6xl md: leading-18 max-w-120 font-semibold li mx-2 max-md:text-3xl max-md:leading-10'>MOON KNIGHT</h1>

@@ -11,7 +11,7 @@ const HeroSection = () => {
                 <div className="flex mx-3 my-2 gap-6 max-sm:flex-col max-sm:gap-2 text-gray-300 max-md:font-semibold">
                     <span>Action | Adventure | Superhero</span>
                     <div className="flex items-center">
-                        <Calendar1Icon className='w-4 h-4 mx-1' />2022
+                        <Calendar1Icon className='w-4 h-4 mx-1' />2023
                     </div>
                     <div className="flex items-center">
                         <ClockIcon className='w-4 h-4 mx-1' />5hr 15min

@@ -173,7 +173,7 @@ const SeatLayout = () => {
 
         <button
           // onClick={bookTickets}
-          onClick={()=> navigate('/my-bookings')}
+          onClick={()=> navigate('/mybookings')}
           className="flex items-center gap-1 mt-20 px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95"
         >
           Proceed to Checkout

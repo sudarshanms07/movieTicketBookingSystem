@@ -5,6 +5,7 @@ import { CheckIcon, DeleteIcon, StarIcon } from "lucide-react";
 import { kConverter } from "../../lib/kConverter";
 import { useAppContext } from "../../context/Appcontext";
 import toast from "react-hot-toast";
+import { dummyShowsData } from "../../assets/assets";
 
 const AddShows = () => {
   const { axios, getToken, user, image_base_url } = useAppContext();
@@ -18,17 +19,19 @@ const AddShows = () => {
   const [addingShow, setAddingShow] = useState(false);
 
   const fetchNowPlayingMovies = async () => {
-    try {
-      const { data } = await axios.get("/api/show/now-playing", {
-        headers: { Authorization: `Bearer ${await getToken()}` },
-      });
+    // try {
+    //   const { data } = await axios.get("/api/show/now-playing", {
+    //     headers: { Authorization: `Bearer ${await getToken()}` },
+    //   });
 
-      if (data.success) {
-        setNowPlayingMovies(data.movies);
-      }
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
+    //   if (data.success) {
+    //     setNowPlayingMovies(data.movies);
+    //   }
+    // } catch (error) {
+    //   console.error("Error fetching movies:", error);
+    // }
+
+    setNowPlayingMovies(dummyShowsData)
   };
 
   const handleDateTimeAdd = () => {
@@ -103,10 +106,10 @@ const AddShows = () => {
   };
 
   useEffect(() => {
-    if (user) {
+   
       fetchNowPlayingMovies();
-    }
-  }, [user]);
+   
+  }, []);
 
   return nowPlayingMovies.length > 0 ? (
     <>
@@ -115,14 +118,12 @@ const AddShows = () => {
       <div className="overflow-x-auto pb-4">
         <div className="group flex flex-wrap gap-4 mt-4 w-max">
           {nowPlayingMovies.map((movie) => (
-            <div
-              key={movie.id}
+            <div key={movie.id}
               className={`relative max-w-40 cursor-pointer group-hover:not-hover:opacity-40 hover:-translate-y-1 transition duration-300`}
-              onClick={() => setSelectedMovie(movie.id)}
-            >
+              onClick={() => setSelectedMovie(movie.id)}>
               <div className="relative rounded-lg overflow-hidden">
                 <img
-                  src={image_base_url + movie.poster_path}
+                  src={movie.poster_path}
                   alt="movie_poster"
                   className="w-full object-cover brightness-90"
                 />

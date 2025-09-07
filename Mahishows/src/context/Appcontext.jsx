@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 export const AppProvider = (props) => {
      const [isAdmin,setisAdmin] = useState(false);
@@ -79,7 +79,8 @@ export const AppProvider = (props) => {
         fetchshows();
      },[])
 
-    return <AppContext.Provider value = {{axios,user,navigate,isAdmin,fetchisAdmin,getToken,fetchfavorites,favorites,setFavorites,shows}}>
+    const value ={axios,user,navigate,isAdmin,fetchisAdmin,getToken,fetchfavorites,favorites,setFavorites,shows}
+    return <AppContext.Provider value = {value}>
         {props.children}
     </AppContext.Provider>
 }

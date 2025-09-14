@@ -9,10 +9,9 @@ import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import Title from "../../components/admin/Title";
 import BlurCircle from "../../components/BlurCircle";
+import { dateFormat } from "../../lib/dateFormat";
 import { useAppContext } from "../../context/Appcontext";
 import toast from "react-hot-toast";
-import { dummyDashboardData } from "../../assets/assets";
-import { dateFormat } from "../../lib/DateFormat";
 
 const Dashboard = () => {
   const { axios, getToken, user, image_base_url } = useAppContext();
@@ -52,32 +51,27 @@ const Dashboard = () => {
   ];
 
   const fetchDashboardData = async () => {
-    // try {
-    //   const { data } = await axios.get("/api/admin/dashboard", {
-    //     headers: { Authorization: `Bearer ${await getToken()}` },
-    //   });
+    try {
+      const { data } = await axios.get("/api/admin/dashboard", {
+        headers: { Authorization: `Bearer ${await getToken()}` },
+      });
 
-    //   if (data.success) {
-    //     setDashboardData(data.dashboardData);
-    //     setLoading(false);
-    //   } else {
-    //     toast.error(data.message);
-    //   }
-    // } catch (error) {
-    //   toast.error("Error fetching dashboard data:", error);
-    // }
-    setDashboardData(dummyDashboardData)
-    setLoading(false)
-
+      if (data.success) {
+        setDashboardData(data.dashboardData);
+        setLoading(false);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error("Error fetching dashboard data:", error);
+    }
   };
 
   useEffect(() => {
-    // if (user) {
-    //   fetchDashboardData();
-    // }
-  // }, [user]);
-  fetchDashboardData();
-  },[]);
+    if (user) {
+      fetchDashboardData();
+    }
+  }, [user]);
 
   return !loading ? (
     <>
@@ -109,7 +103,7 @@ const Dashboard = () => {
             className="w-55 rounded-lg overflow-hidden h-full pb-3 bg-primary/10 border border-primary/20 hover:-translate-y-1 transition duration-300"
           >
             <img
-              src={show.movie.poster_path}
+              src={image_base_url + show.movie.poster_path}
               alt="poster"
               className="h-60 w-full object-cover"
             />

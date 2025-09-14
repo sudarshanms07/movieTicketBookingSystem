@@ -21,6 +21,12 @@ const Featured = () => {
          {dummyShowsData.slice(0,4).map((show) => (
            <MovieCard key={show._id} movie={show}/> 
          ))}
+          
+
+          //tmdb api down
+         {/* {shows.slice(0,4).map((show) => (
+           <MovieCard key={show._id} movie={show}/> 
+         ))} */}
        </div>
        <div className='flex justify-center mt-10 max-md:mt-0'>
          <button onClick={() => {navigate('/movies'); scrollTo(0,0)}} 

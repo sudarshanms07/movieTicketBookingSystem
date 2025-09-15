@@ -28,21 +28,21 @@ const SeatLayout = () => {
   const { axios, getToken, user } = useAppContext();
 
   const getShow = async () => {
-    const show =dummyShowsData.find(show => show._id === id)
-    if(show){
-      setShow({
-        movie: show,
-        dateTime: dummyDateTimeData
-      })
-    }
-    // try {
-    //   const { data } = await axios.get(`/api/show/${id}`);
-    //   if (data.success) {
-    //     setShow(data);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
+    // const show =dummyShowsData.find(show => show._id === id)
+    // if(show){
+    //   setShow({
+    //     movie: show,
+    //     dateTime: dummyDateTimeData
+    //   })
     // }
+    try {
+      const { data } = await axios.get(`/api/show/${id}`);
+      if (data.success) {
+        setShow(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSeatClick = (seatId) => {
@@ -111,9 +111,9 @@ const SeatLayout = () => {
       );
 
       if (data.success) {
-        toast.success(data.message)
-        navigate('/my-bookings')
-        // window.location.href = data.url;
+        // toast.success(data.message)
+        // navigate('/my-bookings')
+        window.location.href = data.url;
       } else {
         toast.error(data.message);
       }
@@ -174,8 +174,8 @@ const SeatLayout = () => {
         </div>
 
         <button
-          // onClick={bookTickets}
-          onClick={()=> navigate('/mybookings')}
+          onClick={bookTickets}
+          // onClick={()=> navigate('/mybookings')}
           className="flex items-center gap-1 mt-20 px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95"
         >
           Proceed to Checkout

@@ -26,21 +26,21 @@ const MovieDetails = () => {
   } = useAppContext();
 
   const getShow = async () => {
-    const show = dummyShowsData.find( show => show._id === id)
-    if(show){
-    setShow({
-      movie: show,
-      dateTime: dummyDateTimeData
-    })
-  }
-  //   try {
-  //     const { data } = await axios.get(`/api/show/${id}`);
-  //     if (data.success) {
-  //       setShow(data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+  //   const show = dummyShowsData.find( show => show._id === id)
+  //   if(show){
+  //   setShow({
+  //     movie: show,
+  //     dateTime: dummyDateTimeData
+  //   })
+  // }
+    try {
+      const { data } = await axios.get(`/api/show/${id}`);
+      if (data.success) {
+        setShow(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleFavorite = async () => {
@@ -70,8 +70,8 @@ const MovieDetails = () => {
     <div className="px-6 md:px-16 lg:px-40 pt-30 md:pt-50">
       <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
         <img
-          // src={image_base_url+show.movie.poster_path}
-          src={show.movie.poster_path}
+          src={image_base_url+show.movie.poster_path}
+          // src={show.movie.poster_path}
           alt="poster"
           className="max-md:mx-auto rounded-xl h-104 max-w-70 object-cover"
         />
@@ -129,7 +129,7 @@ const MovieDetails = () => {
           {show.movie.casts.slice(0, 12).map((cast, index) => (
             <div key={index} className="flex flex-col items-center text-center">
               <img
-                src={cast.profile_path}
+                src={image_base_url+cast.profile_path}
                 alt="profile"
                 className="rounded-full h-20 md:h-20 aspect-square object-cover"
               />

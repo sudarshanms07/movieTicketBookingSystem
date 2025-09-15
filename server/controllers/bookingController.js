@@ -54,8 +54,6 @@ export const createBooking = async (req, res) => {
     await showData.save();
 
     // Stripe Gateway Initialize
-
-    // res.json({success: true, message: "Booked succesfully"})
     const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
 
     // Creating line items for Stripe
@@ -86,13 +84,13 @@ export const createBooking = async (req, res) => {
     booking.paymentLink = session.url;
     await booking.save();
 
-    // // Run Inngest Scheduler Function to check payment status after 10 minutes
-    // await inngest.send({
-    //   name: "app/checkpayment",
-    //   data: {
-    //     bookingId: booking._id.toString(),
-    //   },
-    // });
+    // Run Inngest Scheduler Function to check payment status after 10 minutes
+    await inngest.send({
+      name: "app/checkpayment",
+      data: {
+        bookingId: booking._id.toString(),
+      },
+    });
 
     res.json({ success: true, url: session.url });
   } catch (error) {

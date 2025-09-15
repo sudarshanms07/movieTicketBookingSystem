@@ -18,15 +18,15 @@ const Featured = () => {
         </button>
        </div>
        <div className=' flex flex-wrap max-sm: justify-center gap-8 mt-8'>
-         {dummyShowsData.slice(0,4).map((show) => (
-           <MovieCard key={show._id} movie={show}/> 
-         ))}
-          
-
-          //tmdb api down
-         {/* {shows.slice(0,4).map((show) => (
+         {/* {dummyShowsData.slice(0,4).map((show) => (
            <MovieCard key={show._id} movie={show}/> 
          ))} */}
+          
+
+          {/* //tmdb api down */}
+         {shows.slice(0,4).map((show) => (
+           <MovieCard key={show._id} movie={show}/> 
+         ))}
        </div>
        <div className='flex justify-center mt-10 max-md:mt-0'>
          <button onClick={() => {navigate('/movies'); scrollTo(0,0)}} 
